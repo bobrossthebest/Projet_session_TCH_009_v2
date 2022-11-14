@@ -110,9 +110,6 @@ int main() {
       break;
     }
 
-    //commentaire par Zach
-    //deuxieme commentaire par Zach
-
   } while (choix != QUITTER);
 
   // fin du programme
