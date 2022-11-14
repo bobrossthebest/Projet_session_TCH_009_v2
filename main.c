@@ -110,6 +110,8 @@ int main() {
       break;
     }
 
+    //Test pour voir si ce commentaire upload sur GitHub (14 nov, 13h49)
+
   } while (choix != QUITTER);
 
   // fin du programme
