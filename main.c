@@ -75,7 +75,7 @@ int main() {
                            // pour le calcul de sa pente
   double altitude_min, altitude_max; // altitudes minimale et maximale
   // Ajoutez toute variable que vous jugerez utile (n'oubliez pas de commenter)
-  // :
+  int valmin, valmax; // adresses mémoires pour valeurmax_tab et valeurmin_tab
 
   // Ins�rer ici la boucle du menu principal se terminant lorsque l'utilisateur
   // choisit l'option Quitter :
