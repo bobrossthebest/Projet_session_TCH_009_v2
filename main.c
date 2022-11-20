@@ -129,6 +129,12 @@ int main() {
 
         printf("La pente max est de: %f%%\n", pentemax(tab_lat, tab_long, tab_alti, nb_point, taillefenetre));
       break;
+
+    case 6:
+        double lat1 = 45.37, lon1 = 75.80, lat2 = 45.37, lon2 = 75.80, alt1 = 100, alt2 = 1000;
+
+
+        printf("Distance: %lf", distance_entre_2_points(lat1, lon1, lat2, lon2, alt1, alt2));
     }
 
   } while (choix != QUITTER);
