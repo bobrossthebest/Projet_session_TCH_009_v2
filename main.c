@@ -71,11 +71,11 @@ int main() {
   double tab_lat[MAXPOINT] = {0};  // tableau des valeurs de lattitude
   double tab_long[MAXPOINT] = {0}; // tableau des valeurs de longitudes
   double tab_alti[MAXPOINT] = {0}; // tableau des valeurs d'altidude
-  int taillefenetre = 100; // nombre de segments a consid�rer autour d'un point
+  int taillefenetre; // nombre de segments a consid�rer autour d'un point
                            // pour le calcul de sa pente
   double altitude_min, altitude_max; // altitudes minimale et maximale
   // Ajoutez toute variable que vous jugerez utile (n'oubliez pas de commenter)
-  int valmin, valmax; // adresses mémoires pour valeurmax_tab et valeurmin_tab
+  double valmin, valmax; // adresses mémoires pour valeurmax_tab et valeurmin_tab
 
   // Ins�rer ici la boucle du menu principal se terminant lorsque l'utilisateur
   // choisit l'option Quitter :
@@ -85,28 +85,49 @@ int main() {
 
     switch (choix) {
     case CHARGER:
-      printf("Entrez le nom du fichier a charger: ");
-      fflush(stdin);
-      scanf("%s", nom_fichier);
-      printf("\n\nChargement du fichier...");
-      nb_point =
-          lire_fichier_gpx(nom_fichier, tab_lat, tab_long, tab_alti, MAXPOINT);
-      if (nb_point == -1) {
-        printf("\nErreur de chargement de fichier");
-      } else {
-        printf("\n...%d points lus", nb_point);
-      }
-      break;
+        printf("Entrez le nom du fichier a charger: ");
+        fflush(stdin);
+        scanf("%s", nom_fichier);
+        printf("\n\nChargement du fichier...");
+        nb_point =
+            lire_fichier_gpx(nom_fichier, tab_lat, tab_long, tab_alti, MAXPOINT);
+        if (nb_point == -1) {
+            printf("\nErreur de chargement de fichier");
+        }
+        else {
+            printf("\n...%d points lus", nb_point);
+        }
+        break;
 
     case AFFICHER:
-      printf("Donnees en memoire: \n\n");
-      afficher_trace(tab_lat, tab_long, tab_alti, nb_point);
-      break;
+        printf("Donnees en memoire: \n\n");
+        afficher_trace(tab_lat, tab_long, tab_alti, nb_point);
+        break;
 
     case ANALYSER:
+        valeurmax_tab(tab_alti, nb_point, &valmax); //appel fonction altitude max
+        valeurmin_tab(tab_alti, nb_point, &valmin); //appel fonction altitude min
+
+        //Affichage distance totale
+        printf("Distance totale: %fkm \n\n", distance_totale(tab_lat, tab_long, tab_alti, nb_point, valmin, valmax ));
+
+       // Affichage de l'ascention totale
+        printf("\tAscension: %fm \n\n", ascension(tab_alti, nb_point));
+
+       //Affichage de l'altitude maximale
+            printf("Altitude maximale: %fm \n\n", valmax);
+
+        //Affichage de l'altitude minimale
+            printf("Altitude minimale: %fm \n\n", valmin);
+
       break;
 
     case PENTEMAX:
+        printf("Entrez la valeur de la fenetre de calcul de la pente: ");
+        scanf("%d", &taillefenetre);
+       // taillefenetre = taillefenetre * 2;
+
+        printf("La pente max est de: %f%%\n", pentemax(tab_lat, tab_long, tab_alti, nb_point, taillefenetre));
       break;
     }
 

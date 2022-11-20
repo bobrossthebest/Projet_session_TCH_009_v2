@@ -94,10 +94,10 @@ double distance_entre_2_points(double lat1, double lon1, double lat2,
   // Distance sans prendre en compte l'altitude
   double distance =
       RAYONTERRE * 2 *
-      asin(sqrt(pow(sin((lat1 - lat2) / 2), 2) +
-                cos(lat1) * cos(lat2) * pow(sin((lon1 - lon2) / 2), 2)));
+      asin(sqrt(pow(sin((deg2rad(lat1) - deg2rad(lat2)) / 2), 2) +
+                cos(deg2rad(lat1)) * cos(deg2rad(lat2)) * pow(sin((deg2rad(lon1) - deg2rad(lon2)) / 2), 2)));
   // Pythagore pour prendre en compte l'altitude
-  distance = sqrt(pow(distance, 2) + pow(alt2 - alt1, 2));
+  distance = sqrt(pow(distance, 2) + pow(deg2rad(alt2) - deg2rad(alt1), 2));
   return distance;
 }
 
