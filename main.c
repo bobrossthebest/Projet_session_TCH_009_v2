@@ -109,16 +109,16 @@ int main() {
         valeurmin_tab(tab_alti, nb_point, &valmin); //appel fonction altitude min
 
         //Affichage distance totale
-        printf("Distance totale: %.00fkm \n\n", distance_totale(tab_lat, tab_long, tab_alti, nb_point, valmin, valmax));
+        printf("Distance totale: %.2fkm \n\n", distance_totale(tab_lat, tab_long, tab_alti, nb_point, valmin, valmax));
 
         // Affichage de l'ascention totale
-        printf("\tAscension: %.00fm \n\n", ascension(tab_alti, nb_point));
+        printf("\tAscension: %.2fm \n\n", ascension(tab_alti, nb_point));
 
         //Affichage de l'altitude maximale
-        printf("Altitude maximale: %.00fm \n\n", valmax);
+        printf("Altitude maximale: %.2fm \n\n", valmax);
 
         //Affichage de l'altitude minimale
-        printf("Altitude minimale: %.00fm \n\n", valmin);
+        printf("Altitude minimale: %.2fm \n\n", valmin);
 
         break;
 
@@ -127,7 +127,7 @@ int main() {
         scanf("%d", &taillefenetre);
         // taillefenetre = taillefenetre * 2;
 
-        printf("La pente max est de: %.00f%%\n", pentemax(tab_lat, tab_long, tab_alti, nb_point, taillefenetre)/10);
+        printf("La pente max est de: %.2f%%\n", pentemax(tab_lat, tab_long, tab_alti, nb_point, taillefenetre));
         break;
     }
   } while (choix != QUITTER);

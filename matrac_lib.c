@@ -152,8 +152,8 @@ double pentemax(double tab_lat[], double tab_long[], double tab_alti[],
                           i - taille_fenetre, i + taille_fenetre) > 0) {
         pente_i =
             (tab_alti[i + taille_fenetre] - tab_alti[i - taille_fenetre]) /
-            distance_totale(tab_lat, tab_long, tab_alti, taille,
-                            i - taille_fenetre, i + taille_fenetre);
+            (distance_totale(tab_lat, tab_long, tab_alti, taille,
+                            i - taille_fenetre, i + taille_fenetre)*1000)*100;
         // Cette verification n'a pas de sens si pente_i n'a pas ete redefini
         if (pente_i > pentemax) {
           pentemax = pente_i;
