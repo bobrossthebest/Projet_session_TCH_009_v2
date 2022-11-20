@@ -97,7 +97,7 @@ double distance_entre_2_points(double lat1, double lon1, double lat2,
       asin(sqrt(pow(sin((deg2rad(lat1) - deg2rad(lat2)) / 2), 2) +
                 cos(deg2rad(lat1)) * cos(deg2rad(lat2)) * pow(sin((deg2rad(lon1) - deg2rad(lon2)) / 2), 2)));
   // Pythagore pour prendre en compte l'altitude
-  distance = sqrt(pow(distance, 2) + pow((alt2 - alt1/)1000, 2));
+  distance = sqrt(pow(distance, 2) + pow((alt2-alt1)/1000, 2));
   return distance;
 }
 

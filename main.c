@@ -109,34 +109,27 @@ int main() {
         valeurmin_tab(tab_alti, nb_point, &valmin); //appel fonction altitude min
 
         //Affichage distance totale
-        printf("Distance totale: %fkm \n\n", distance_totale(tab_lat, tab_long, tab_alti, nb_point, valmin, valmax ));
+        printf("Distance totale: %.00fkm \n\n", distance_totale(tab_lat, tab_long, tab_alti, nb_point, valmin, valmax));
 
-       // Affichage de l'ascention totale
-        printf("\tAscension: %fm \n\n", ascension(tab_alti, nb_point));
+        // Affichage de l'ascention totale
+        printf("\tAscension: %.00fm \n\n", ascension(tab_alti, nb_point));
 
-       //Affichage de l'altitude maximale
-            printf("Altitude maximale: %fm \n\n", valmax);
+        //Affichage de l'altitude maximale
+        printf("Altitude maximale: %.00fm \n\n", valmax);
 
         //Affichage de l'altitude minimale
-            printf("Altitude minimale: %fm \n\n", valmin);
+        printf("Altitude minimale: %.00fm \n\n", valmin);
 
-      break;
+        break;
 
     case PENTEMAX:
         printf("Entrez la valeur de la fenetre de calcul de la pente: ");
         scanf("%d", &taillefenetre);
-       // taillefenetre = taillefenetre * 2;
+        // taillefenetre = taillefenetre * 2;
 
-        printf("La pente max est de: %f%%\n", pentemax(tab_lat, tab_long, tab_alti, nb_point, taillefenetre));
-      break;
-
-    case 6:
-        double lat1 = 45.37, lon1 = 75.80, lat2 = 45.37, lon2 = 75.80, alt1 = 100, alt2 = 1000;
-
-
-        printf("Distance: %lf", distance_entre_2_points(lat1, lon1, lat2, lon2, alt1, alt2));
+        printf("La pente max est de: %.00f%%\n", pentemax(tab_lat, tab_long, tab_alti, nb_point, taillefenetre)/10);
+        break;
     }
-
   } while (choix != QUITTER);
 
   // fin du programme
