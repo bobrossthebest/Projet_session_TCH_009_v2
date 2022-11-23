@@ -73,7 +73,6 @@ int main() {
   double tab_alti[MAXPOINT] = {0}; // tableau des valeurs d'altidude
   int taillefenetre; // nombre de segments a consid�rer autour d'un point
                            // pour le calcul de sa pente
-  double altitude_min, altitude_max; // altitudes minimale et maximale
   // Ajoutez toute variable que vous jugerez utile (n'oubliez pas de commenter)
   double valmin, valmax; // adresses mémoires pour valeurmax_tab et valeurmin_tab
 
@@ -88,14 +87,14 @@ int main() {
         printf("Entrez le nom du fichier a charger: ");
         fflush(stdin);
         scanf("%s", nom_fichier);
-        printf("\n\nChargement du fichier...");
+        printf("\nChargement du fichier...");
         nb_point =
             lire_fichier_gpx(nom_fichier, tab_lat, tab_long, tab_alti, MAXPOINT);
         if (nb_point == -1) {
-            printf("\nErreur de chargement de fichier");
+            printf("\nErreur de chargement de fichier\n\n");
         }
         else {
-            printf("\n...%d points lus", nb_point);
+            printf("\n...%d points lus\n\n", nb_point);
         }
         break;
 
@@ -105,14 +104,12 @@ int main() {
         break;
 
     case ANALYSER:
-<<<<<<< Updated upstream
-      break;
-=======
+
         valeurmax_tab(tab_alti, nb_point, &valmax); //appel fonction altitude max
         valeurmin_tab(tab_alti, nb_point, &valmin); //appel fonction altitude min
 
         //Affichage distance totale
-        printf("Distance totale: %.2fkm \n\n", distance_totale(tab_lat, tab_long, tab_alti, nb_point, valmin, valmax));
+        printf("Distance totale: %.2fkm \n\n", distance_totale(tab_lat, tab_long, tab_alti, nb_point, 0, nb_point - 1));
 
         // Affichage de l'ascention totale
         printf("\tAscension: %.2fm \n\n", ascension(tab_alti, nb_point));
@@ -130,7 +127,7 @@ int main() {
         scanf("%d", &taillefenetre);
         // taillefenetre = taillefenetre * 2;
 
-        printf("La pente max est de: %.2f%%\n", pentemax(tab_lat, tab_long, tab_alti, nb_point, taillefenetre));
+        printf("La pente max est de: %.2f%%\n\n", pentemax(tab_lat, tab_long, tab_alti, nb_point, taillefenetre));
         break;
     }
   } while (choix != QUITTER);
