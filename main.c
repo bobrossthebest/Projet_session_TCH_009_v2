@@ -105,6 +105,9 @@ int main() {
         break;
 
     case ANALYSER:
+<<<<<<< Updated upstream
+      break;
+=======
         valeurmax_tab(tab_alti, nb_point, &valmax); //appel fonction altitude max
         valeurmin_tab(tab_alti, nb_point, &valmin); //appel fonction altitude min
 
