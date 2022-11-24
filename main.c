@@ -80,58 +80,85 @@ int main() {
   // choisit l'option Quitter :
 
   do {
-    choix = afficher_menu();
+    choix = afficher_menu();// Affiche une liste des fonctions que l'utilisateur peut utiliser
 
-    switch (choix) {
-    case CHARGER:
+    switch (choix) {// Fait la transition entre la valeur entrée par l'utilisateur et la fonction relliée à celle-ci
+    case CHARGER: // Charge les données d'un fichier GPS qui seront par la suite utilisées dans les différentes fonctions
         printf("Entrez le nom du fichier a charger: ");
         fflush(stdin);
         scanf("%s", nom_fichier);
         printf("\nChargement du fichier...");
         nb_point =
-            lire_fichier_gpx(nom_fichier, tab_lat, tab_long, tab_alti, MAXPOINT);
+            lire_fichier_gpx(nom_fichier, tab_lat, tab_long, tab_alti, MAXPOINT);// Charge les données du fichier vers un tableau
         if (nb_point == -1) {
-            printf("\nErreur de chargement de fichier\n\n");
+            printf("\nErreur de chargement de fichier\n\n"); // Le programme affiche "Erreur de chargement de fichier" si le fichier entré par l'utilisateur n'est pas valide
         }
         else {
-            printf("\n...%d points lus\n\n", nb_point);
+            printf("\n...%d points lus\n\n", nb_point); // Le programme affiche le nombre de points lus dans le fichier entré par l'utilisateur
         }
         break;
 
-    case AFFICHER:
+    case AFFICHER: // Affichage des points de la trace mise en memoire en utilisant des coodronnées 3D
         printf("Donnees en memoire: \n\n");
-        afficher_trace(tab_lat, tab_long, tab_alti, nb_point);
+        afficher_trace(tab_lat, tab_long, tab_alti, nb_point); // Le programme affiche l'ensemble des données composants le fichier entré par l'utilisateur 
         break;
 
-    case ANALYSER:
+    case ANALYSER: /*Analyse des caracteristiques de base de la trace. Les caracteristiques analysées sont les suivantes :
+                     La distance totale, l'ascension totale, l'altitude maximale et l'altitude minimale.*/
 
-        valeurmax_tab(tab_alti, nb_point, &valmax); //appel fonction altitude max
-        valeurmin_tab(tab_alti, nb_point, &valmin); //appel fonction altitude min
+        valeurmax_tab(tab_alti, nb_point, &valmax); // Appel fonction altitude max
+        valeurmin_tab(tab_alti, nb_point, &valmin); // Appel fonction altitude min
 
-        //Affichage distance totale
+        // Affichage distance totale
         printf("Distance totale: %.2fkm \n\n", distance_totale(tab_lat, tab_long, tab_alti, nb_point, 0, nb_point - 1));
 
         // Affichage de l'ascention totale
         printf("\tAscension: %.2fm \n\n", ascension(tab_alti, nb_point));
 
-        //Affichage de l'altitude maximale
+        // Affichage de l'altitude maximale
         printf("Altitude maximale: %.2fm \n\n", valmax);
 
-        //Affichage de l'altitude minimale
+        // Affichage de l'altitude minimale
         printf("Altitude minimale: %.2fm \n\n", valmin);
 
         break;
 
-    case PENTEMAX:
+    case PENTEMAX:// Calcul de la pente maximale de la trace
         printf("Entrez la valeur de la fenetre de calcul de la pente: ");
-        scanf("%d", &taillefenetre);
-        // taillefenetre = taillefenetre * 2;
+        scanf("%d", &taillefenetre); // Taillefenetre = taillefenetre * 2;
 
-        printf("La pente max est de: %.2f%%\n\n", pentemax(tab_lat, tab_long, tab_alti, nb_point, taillefenetre));
+        printf("La pente max est de: %.2f%%\n\n", pentemax(tab_lat, tab_long, tab_alti, nb_point, taillefenetre)) // 
         break;
     }
-  } while (choix != QUITTER);
+  } while (choix != QUITTER); // La boucle du programme continue tant que la valeur reliée à la variable "QUITTER" n'est pas rentrée par l'utilisateur
 
   // fin du programme
   return EXIT_SUCCESS;
 }
+
+/*
+Fonctions verifiées:
+
+    afficher_tab1D_double
+
+    deg2rad
+
+    lire_fichier_gpx
+
+    afficher_trace  
+
+    distance_entre_2_points
+
+    distance_totale
+
+    ascension
+
+    valeurmin_tab
+
+    valeurmax_tab
+
+    pentemax
+
+
+
+*/
